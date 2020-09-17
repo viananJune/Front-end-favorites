@@ -1,0 +1,18 @@
+ this.$message({
+          message: '恭喜你，这是一条成功消息',
+          type: 'success',
+          showClose:true
+        });
+
+ this.$message({
+                message: "只能选择一个设备",
+                type: "error",
+                showClose: true
+              });
+
+
+ 
+         
+
+
+       

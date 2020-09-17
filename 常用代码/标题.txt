@@ -1,0 +1,29 @@
+     <div class="title">
+        <div class="circle"></div>
+        <h3>收费信息</h3>
+      </div>
+  .circle {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #409eff;
+  }
+
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /*垂直居中*/
+  margin: 15px 0;
+  .circle {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #409eff;
+  }
+  h3 {
+    font-size: 16px;
+    margin-left: 5px;
+  }
+}

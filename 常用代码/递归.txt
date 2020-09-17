@@ -1,0 +1,10 @@
+export const recursionCamera = v => {
+  v.forEach(v => {
+    if (v.isShow === 1 && v.children) {
+      recursionCamera(v.children)
+    } else if (v.isShow === 0 && v.children) {
+      v.disabled = true
+      recursionCamera(v.children)
+    }
+  })
+}

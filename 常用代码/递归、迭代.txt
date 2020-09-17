@@ -1,0 +1,94 @@
+// 提取视频树status为0的数据,并将其设置为禁用状态
+export const recursionData = v => {
+  v.forEach(v => {
+    v.checked = false //处理大数据树自定义图标的动态切换
+    if (v.status === 1 && v.children) {
+      recursionData(v.children)
+    } else if (v.status === 0 && v.children) {
+      v.disabled = true
+      recursionData(v.children)
+    } else if (v.status === 0) {
+      v.disabled = true
+    }
+  })
+}
+
+// 提取收藏夹树status为0的数据,并将其设置为禁用状态
+export const recursionCollection = v => {
+  v.forEach(v => {
+    v.checked = false
+    if (v.children) {
+      if (v.status === 0) {
+        v.disabled = true
+      }
+      recursionCollection(v.children)
+    }
+  })
+}
+
+// 提取属性为isShow数据(摄像机),如0将其设置为禁用状态,反之
+export const recursionCamera = v => {
+  v.forEach(v => {
+    if (v.isShow === 1 && v.children) {
+      recursionCamera(v.children)
+    } else if (v.isShow === 0 && v.children) {
+      v.disabled = true
+      recursionCamera(v.children)
+    }
+  })
+}
+
+// 截取-后面的值
+export const getCommonFun = v => {
+  if (v.includes("-")) {
+    var index = v.lastIndexOf("-")
+    var h = v.substring(index + 1, v.length)
+    return h
+  } else {
+    return false
+  }
+}
+
+//将树结构解析成所需数组结构
+export const deepAnalysis = tree => {
+  var data = [] //存放提取后的树的值
+  var demandArr = [] //存放所需的数组
+  while (tree.length !== 0) {
+    const pop = tree.pop()
+    data.push({
+      id: pop.nodeId,
+      parentId: pop.parentId,
+      group: pop.group,
+      name: pop.nodeName
+    })
+    const children = pop.children
+    if (children) {
+      for (let i = children.length - 1; i >= 0; i--) {
+        tree.push(children[i])
+      }
+    }
+  }
+  data.forEach(v => {
+    if (v.id.includes("file")) {
+      demandArr.push({
+        id: v.id,
+        parentId: v.parentId,
+        group: v.group,
+        name: v.name
+      })
+    }
+  })
+  return demandArr
+}
+
+
+export const recursionCamera = v => {
+  v.forEach(v => {
+    if (v.isShow === 1 && v.children) {
+      recursionCamera(v.children)
+    } else if (v.isShow === 0 && v.children) {
+      v.disabled = true
+      recursionCamera(v.children)
+    }
+  })
+}
